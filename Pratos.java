@@ -21,3 +21,35 @@ public class Prato {
         }
         this.categoria = categoria;
     }
+
+
+    public String getNome() {
+        return nome;
+    }
+
+    public double getPreco() {
+        return preco;
+    }
+
+    public String getCategoria() {
+        return categoria;
+    }
+
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public void setPreco(double preco) {
+        if (preco >= 0) {
+            this.preco = preco;
+        } else {
+            System.out.println("Preço não pode ser negativo.");
+            this.preco = 0.0;
+        }
+    }
+
+    public void setCategoria(String categoria) {
+        this.categoria = categoria;
+    }
+}
