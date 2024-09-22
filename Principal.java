@@ -16,6 +16,21 @@ public class Principal {
 		Pedido pedido = new Pedido();
 		int i = 0;
 		int opcao = 0;
+		char controle = ' ';
+		String nome;
+		System.out.println("Digite o código do pedido");
+		pedido.setNumeroPedido(sc.nextInt());
+		sc.nextLine();
+		System.out.println("Digite o nome do cliente");
+		nome = sc.nextLine();
+		pedido.setNomeCliente(nome);
+		pedido.validaNome(nome);
+		
+		for(int j = 0; j < 5; j++) {
+			System.out.println("Prato " + (j+1) + ": ");
+			prato[j].exibirPratos();
+			
+		}
 		do {
 			System.out.println("Digite qual das opções de pratos deseja: [1] [2] [3] [4] [5]");
 			opcao = sc.nextInt();
@@ -23,18 +38,13 @@ public class Principal {
 				System.out.println("Número inválido!");
 				continue;
 			}
-			if(i==0) {
-				System.out.println("Digite o código do pedido");
-				pedido.setNumeroPedido(sc.nextInt());
-				System.out.println("Digite o nome do cliente");
-				pedido.setNomeCliente(null);
-			}
-			switch(opcao) {
-
-			}
-			
-		}while(i < 5);
+			pedido.setPratos(prato[opcao-1]);
+			i++;
+			System.out.println("deseja continuar a adicionar pratos ao pedido? [S/N]");
+			controle = sc.next().charAt(0);
+		}while(i < 5 && (controle != 'n' && controle != 'N'));
+		pedido.exibirPedido();
+		System.out.println("Preço final: " + pedido.getPrecoFinal());
 		sc.close();
 	}
-
 }
