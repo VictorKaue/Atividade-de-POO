@@ -1,23 +1,22 @@
 package restaurante;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class Pedido {
-    private int numeroPedido;
+public class Pedido{
+	private int numeroPedido;
     private String nomeCliente;
-    private List<String> pratos;
-
+	private ArrayList<Prato> prato;
+	
     public Pedido() {
         this.numeroPedido = 0;
         this.nomeCliente = "";
-        this.pratos = new ArrayList<String>();
+        this.prato = new ArrayList<>();
     }
 
-    public Pedido(int numeroPedido, String nomeCliente, List<String> pratos) {
+    public Pedido(int numeroPedido, String nomeCliente, Prato[] prato) {
         this.numeroPedido = numeroPedido;
         this.nomeCliente = nomeCliente;
-        this.pratos = pratos;
+        this.prato = new ArrayList<Prato>();
     }
 
     public int getNumeroPedido() {
@@ -36,12 +35,12 @@ public class Pedido {
         this.nomeCliente = nomeCliente;
     }
 
-    public List<String> getPratos() {
-        return pratos;
+    public Prato getPratos(int posicao) {
+        return prato.get(posicao);
     }
 
-    public void setPratos(List<String> pratos) {
-        this.pratos = pratos;
+    public void setPratos(Prato prato) {
+        this.prato.add(prato);
     }
 
     //Metódo Para Validar se o Nome é vazio
@@ -52,5 +51,23 @@ public class Pedido {
         } else {
             return nome;
         }
-    }   
+    }
+    public void exibirPedido() {
+    	System.out.println("Número do pedido: " + numeroPedido);
+    	System.out.println("Nome do Cliente: " + nomeCliente);
+    	System.out.println("Pratos escolhidos: ");
+    	for (int i = 0;i < prato.size() ;i++) {
+    		System.out.println(prato.get(i).getNome());
+    		System.out.println(prato.get(i).getPreco());
+    		System.out.println(prato.get(i).getCategoria());	
+    	}
+    }
+    
+    public float getPrecoFinal() {
+    	float preco_total = 0;
+    	for (int i = 0;i < prato.size() ;i++) {
+    		preco_total += prato.get(i).getPreco();
+    	}
+    	return preco_total;
+    }
 }
